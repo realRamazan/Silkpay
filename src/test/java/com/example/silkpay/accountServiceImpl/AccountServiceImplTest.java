@@ -1,10 +1,9 @@
-package com.example.silkpay.accountDAOImpl;
+package com.example.silkpay.accountServiceImpl;
 
 
-import com.example.silkpay.dao.AccountDAO;
-import com.example.silkpay.dao.AccountDAOImpl;
 import com.example.silkpay.entity.Accounts;
 import com.example.silkpay.repostitory.AccountRepository;
+import com.example.silkpay.service.AccountServiceImpl;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -16,20 +15,20 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import java.util.List;
 
 @ExtendWith(MockitoExtension.class)
-public class AccountDAOImplTest {
+public class AccountServiceImplTest {
 
     @Mock
     private AccountRepository accountRepository;
 
     @InjectMocks
-    private AccountDAOImpl accountDAO;
+    private AccountServiceImpl accountService;
 
     @Test
     public void shouldReturnAccountsByUserId(){
         Integer userId = 1;
         List<Accounts> accounts = getAccounts2();
         Mockito.when(accountRepository.findAllByUserId(1)).thenReturn(accounts);
-        List<Accounts> res = accountDAO.getAccounts(userId);
+        List<Accounts> res = accountService.getAccounts(userId);
 
         Assertions.assertNotNull(res);
         Assertions.assertEquals(2, res.size());
